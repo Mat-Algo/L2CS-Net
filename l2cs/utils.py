@@ -5,6 +5,7 @@ from math import cos, sin
 from pathlib import Path
 import subprocess
 import re
+import time
 
 import numpy as np
 import torch
@@ -25,6 +26,11 @@ transformations = transforms.Compose([
         std=[0.229, 0.224, 0.225]
     )
 ])
+
+def date_modified(path=__file__):
+    """Return file modified date as a string."""
+    t = os.path.getmtime(path)
+    return time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(t))
 
 def atoi(text):
     return int(text) if text.isdigit() else text
